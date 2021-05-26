@@ -51,6 +51,7 @@ class VillageController extends AbstractController
             ";
         foreach ($monsters as $monster){
             echo "<a href='index.php?p=/fight&name={$player->getName()}&monster={$monster->getName()}'>{$monster->getName()}</a>";
+            echo "</br>";
         }
         echo"</div>";
         echo TemplateUtils::getFooter();
