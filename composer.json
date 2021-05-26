@@ -1,0 +1,19 @@
+{
+    "name": "max/mon-rpg",
+    "description": "rpg game",
+    "authors": [
+        {
+            "name": "Elkawaie",
+            "email": "maximiliendelangle@gmail.com"
+        }
+    ],
+    "require": {
+        "ext-pdo": "*",
+        "doctrine/orm": "^2.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "Rpg\\": "app/"
+        }
+    }
+}
