@@ -2,6 +2,7 @@
 
 namespace Rpg\Class;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Rpg\Interface\PlayableInterface;
 use Rpg\Utils\Character;
@@ -13,9 +14,31 @@ use Rpg\Utils\Character;
 class Player extends Character implements PlayableInterface
 {
 
+    /**
+     * @ORM\ManytoMany(targetEntity="Rpg\Class\Item", inversedBy="players")
+     * @ORM\JoinTable("player_has_items")
+     */
+    private $items;
+
     public function __construct($name, $race, $classe)
     {
         parent::__construct($name, $race, $classe);
+        $this->items = new ArrayCollection();
+    }
+
+    public function getItems()
+    {
+        return $this->items;
+    }
+
+    public function addItem(Item $item)
+    {
+        $this->items[] = $item;
+    }
+
+    public function removeItem(Item $item)
+    {
+        $this->items->removeElement($item);
     }
 
     public function attack($weapon, $target)
