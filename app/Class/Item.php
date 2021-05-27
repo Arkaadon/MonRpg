@@ -140,19 +140,32 @@ class Item
         
         return $this;
     }
+
     /**
      * @ORM\ManyToMany(targetEntity="Rpg\Class\Player", mappedBy="items")
      * @ORM\JoinTable("player_has_items")
      */
     private $players;
     
+    /**
+     * @ORM\ManyToMany(targetEntity="Rpg\Class\Magasin", mappedBy="itemsInStock")
+     * @ORM\JoinTable("magasinStock")
+     */
+    private $magasins;
+
     public function __construct()
     {
         $this->players = new ArrayCollection();
+        $this->magasins = new ArrayCollection();
     }
     
     public function getPlayers()
     {
         return $this->players;
+    }
+    
+    public function getMagasins()
+    {
+        return $this->magasins;
     }
 }

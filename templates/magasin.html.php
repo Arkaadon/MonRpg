@@ -2,7 +2,7 @@
 <div class='container'>
                 <h1 class='text-center'>Bienvenue dans le magasin !</h1>
             </div>
-            <?php foreach ($items as $item):?>
+            <?php foreach ($magasins->getItems()->getValues() as $item):?>
                 <div class='card' style='width: 18rem;'>
                    
                     <div class='card-body'>

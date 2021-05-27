@@ -1,5 +1,7 @@
 <?php
 namespace Rpg\Class;
+
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -21,7 +23,28 @@ class Magasin
     protected string $name;
 
     /**
-     * @ORM\Column(name="items", type="array", nullable=false)
+     * @ORM\ManytoMany(targetEntity="Rpg\Class\Item", inversedBy="magasins")
+     * @ORM\JoinTable("magasinStock")
      */
-    protected array $items;
+    private $itemsInStock;
+
+    public function __construct()
+    {
+        $this->itemsInStock = new ArrayCollection();
+    }
+
+    public function getItems()
+    {
+        return $this->itemsInStock;
+    }
+
+    public function addItem(Item $item)
+    {
+        $this->itemsInStock[] = $item;
+    }
+
+    public function removeItem(Item $item)
+    {
+        $this->itemsInStock->removeElement($item);
+    }
 }
