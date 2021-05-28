@@ -19,7 +19,7 @@ class LevelCheckController
         }
         else{
             header("Location: index.php?p=/destination&name=$_GET[name]");
-
+            // lol
         }
 
     }
