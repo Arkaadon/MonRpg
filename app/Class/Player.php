@@ -25,6 +25,16 @@ class Player extends Character implements PlayableInterface
      */
     protected int $gold;
 
+    /**
+     * @ORM\Column(name="xp", type="integer", nullable=false)
+     */
+    protected int $xp;
+
+    /**
+     * @ORM\Column(name="level", type="integer", nullable=false)
+     */
+    protected int $level;
+
     public function __construct($name, $race, $classe)
     {
         parent::__construct($name, $race, $classe);
@@ -54,6 +64,46 @@ class Player extends Character implements PlayableInterface
     public function getItems()
     {
         return $this->items;
+    }
+    
+    /**
+     * Get the value of xp
+     */ 
+    public function getXp()
+    {
+        return $this->xp;
+    }
+
+    /**
+     * Set the value of xp
+     *
+     * @return  self
+     */ 
+    public function setXp($xp)
+    {
+        $this->xp = $xp;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of level
+     */ 
+    public function getLevel()
+    {
+        return $this->level;
+    }
+
+    /**
+     * Set the value of level
+     *
+     * @return  self
+     */ 
+    public function setLevel($level)
+    {
+        $this->level = $level;
+
+        return $this;
     }
 
     public function addItem(Item $item)
@@ -94,6 +144,8 @@ class Player extends Character implements PlayableInterface
             Mes statistiques m'orriente plutôt vers une classe de type magique à distance ou au corps à corps.<br>
             Et toi qui est tu ?";
     }
+
+    
 
     
 }

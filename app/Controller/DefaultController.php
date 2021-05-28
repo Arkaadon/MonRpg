@@ -39,6 +39,6 @@ class DefaultController extends AbstractController
         */
         $this->em->flush();
 
-        header('Location: index.php?p=/village&name=' . $player->getName());
+        header('Location: index.php?p=/destination&name=' . $player->getName());
     }
 }

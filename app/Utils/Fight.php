@@ -43,7 +43,12 @@ class Fight
             echo "Je joueur gagne et reçois 15 golds";
             $entityManager = GetEntityManager();
             $player = $entityManager->getRepository(Player::class)->find($this->player->getId());
-            $player->setGold(15);
+            $player->setGold($player->getGold()+15);
+            $player->setXp($player->getXp()+15);
+            if ($player->getXp() >=100) {
+                $player->setLevel($player->getLevel()+1);
+                $player->setXp(0);
+            };
         
             $entityManager->flush();
         }
@@ -51,7 +56,7 @@ class Fight
             echo "Le monstre gagne";
         };
         echo "</br>";
-        echo "<a href='index.php?p=/village&name=".$_GET["name"]."' class='btn btn-primary'>Retour au village</a>";
+        echo "<a href='index.php?p=/village&village=$_GET[village]&name=$_GET[name]' class='btn btn-primary'>Retour au village</a>";
     }
 
 }

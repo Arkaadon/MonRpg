@@ -5,6 +5,8 @@ use Rpg\Controller\DefaultController;
 use Rpg\Controller\VillageController;
 use Rpg\Controller\MagasinController;
 use Rpg\Controller\AchatController;
+use Rpg\Controller\DestinationController;
+use Rpg\Controller\LevelCheckController;
 use Rpg\Router\Router;
 
 include_once __DIR__ . '/vendor/autoload.php';
@@ -22,6 +24,8 @@ $villageController = new VillageController();
 $combatController = new CombatController();
 $magasinController = new MagasinController();
 $achatController = new AchatController();
+$destinationController = new DestinationController();
+$levelcheckController = new LevelCheckController();
 // Ici grace au méthodes get et post de notre router nous définissont toutes les routes de notre applications en fonction
 // de leur méthodes HTTP ( GET ET POST ), tout en leur attribuant une fonction a éxécuter
 
@@ -31,6 +35,8 @@ $router->get('/village', [$villageController, 'index']);
 $router->get('/fight', [$combatController, 'startFight']);
 $router->get('/magasin', [$magasinController, 'magasin']);
 $router->get('/achat', [$achatController, 'achat']);
+$router->get('/lvlchk', [$levelcheckController, 'levelCheck']);
+$router->get("/destination", [$destinationController, 'destination']);
 
 $router->post('/',[$defaultController, 'createPerso']);
 

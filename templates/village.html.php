@@ -2,6 +2,9 @@
 <div class='container'>
                 <h1 class='text-center'>Bienvenue dans le village !</h1>
             </div>
+            <div class="container">
+            <a href='index.php?p=/destination&name=<?=$_GET['name']?>' class='btn btn-primary'>Retourner au choix de destination</a>
+            </div>
                 <div class='card' style='width: 18rem;'>
                    
                     <div class='card-body'>
@@ -25,11 +28,11 @@
                         </div>
                     </div>
                 </div>
-                <a href='index.php?p=/magasin&name=<?=$player->getName()?>' class='btn btn-primary'>Boutique</a>
+                <a href='index.php?p=/magasin&village=<?=$_GET['village']?>&name=<?=$player->getName()?>' class='btn btn-primary'>Boutique</a>
             <div class='container'>
             
             <?php foreach ($monsters as $monster):?>
-                <a href='index.php?p=/fight&name=<?=$player->getName()?>&monster=<?=$monster->getName()?>'><?=$monster->getName()?></a>
+                <a href='index.php?p=/fight&village=<?=$_GET['village']?>&name=<?=$player->getName()?>&monster=<?=$monster->getName()?>'><?=$monster->getName()?></a>
                 </br>
             <?php endforeach?>
 </div>

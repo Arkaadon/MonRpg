@@ -2,7 +2,7 @@
 
 namespace Rpg\Class;
 
-
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Rpg\Interface\PlayableInterface;
 use Rpg\Utils\Character;
@@ -13,9 +13,16 @@ use Rpg\Utils\Character;
  */
 class Monster extends Character implements PlayableInterface{
 
+    /**
+     * @ORM\ManytoMany(targetEntity="Rpg\Class\Village", inversedBy="monsters")
+     * @ORM\JoinTable("monsters_in_village")
+     */
+    private $village;
+
     public function __construct($name, $race, $classe)
     {
         parent::__construct($name, $race, $classe);
+        $this->village = new ArrayCollection();
     }
 
     public function sePresenter()
@@ -44,5 +51,13 @@ class Monster extends Character implements PlayableInterface{
 
     public function throwSpell($spell)
     {
+    }
+
+    /**
+     * Get the value of village
+     */ 
+    public function getVillage()
+    {
+        return $this->village;
     }
 }

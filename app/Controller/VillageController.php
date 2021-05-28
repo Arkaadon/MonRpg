@@ -8,6 +8,7 @@ use Rpg\Class\Monster;
 use Rpg\Class\Player;
 use Rpg\Templates\TemplateUtils;
 use Rpg\Utils\AbstractController;
+use Rpg\Class\Village;
 
 require_once __DIR__ . '/../../config/bootstrap.php';
 
@@ -23,7 +24,8 @@ class VillageController extends AbstractController
             ]
         );
         // Sur cette ligne on récupére le repository correspondant au Monster, pour ensuite utiliser la méthode findAll() de ce dernier
-        $monsters = $this->em->getRepository(Monster::class)->findAll();
+        $village = $this->em->getRepository(Village::class)->find($_GET['village']);
+        $monsters = $this->em->getRepository(Monster::class)->findBy(['id'=>$village->getMonsters()->getValues()]);
 
         $header = TemplateUtils::getHeader();
         $footer = TemplateUtils::getFooter();

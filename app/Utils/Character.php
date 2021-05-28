@@ -63,6 +63,8 @@ class Character
         $this->agility = 20;
         $this->stamina = 100;
         $this->gold = 0;
+        $this->xp = 0;
+        $this->level = 1;
 
     }
 

@@ -14,11 +14,13 @@ class AchatController
         
         $player = $entityManager->getRepository(Player::class)->findOneBy(['name' => $_GET['name']]);
 
-        
-        $player->addItem($item);
+        if ($player->getGold() >= $item->getPrice()) {
+            $player->setGold($player->getGold()-$item->getPrice());
+            $player->addItem($item);
+            $entityManager->flush();
+        }
 
-        $entityManager->flush();
 
-        header('Location: index.php?p=/magasin&name=' . $_GET['name']);
+        header("Location: index.php?p=/magasin&village=$_GET[village]&name=$_GET[name]");
     }
 }

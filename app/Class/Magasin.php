@@ -28,14 +28,26 @@ class Magasin
      */
     private $itemsInStock;
 
+    /**
+     * @ORM\ManytoMany(targetEntity="Rpg\Class\Village", inversedBy="magasin")
+     * @ORM\JoinTable("magasin_in_village")
+     */
+    private $village;
+
     public function __construct()
     {
         $this->itemsInStock = new ArrayCollection();
+        $this->village = new ArrayCollection();
     }
 
     public function getItems()
     {
         return $this->itemsInStock;
+    }
+
+    public function getVillage()
+    {
+        return $this->village;
     }
 
     public function addItem(Item $item)
@@ -47,4 +59,6 @@ class Magasin
     {
         $this->itemsInStock->removeElement($item);
     }
+
+
 }
