@@ -29,8 +29,9 @@ class CombatController extends AbstractController
             ]
         );
 
-        $fight = new Fight($player, $monster);
 
+        $fight = new Fight($player, $monster);
+        
         $fight->start();
 
     }

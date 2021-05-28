@@ -4,6 +4,8 @@ namespace Rpg\Utils;
 use Rpg\Class\Monster;
 use Rpg\Class\Player;
 
+require_once __DIR__ . '/../../config/bootstrap.php';
+
 class Fight
 {
     private Player $player;
@@ -14,7 +16,7 @@ class Fight
         $this->player = $player;
         $this->monster = $monster;
     }
-
+    
     public function start()
     {
 
@@ -35,8 +37,21 @@ class Fight
                 echo 'Le monstre perd 2 point de vie <br>';
             }
         }
-        $winner = $this->player->getHp() > 0 ? 'Le joueur gagne' : 'Le monstre gagne';
-        echo $winner;
+        // $winner = $this->player->getHp() > 0 ? 'Le joueur gagne' : 'Le monstre gagne';
+        // echo $winner;
+        if ($this->player->getHp() > 0 && $this->monster->getHp() <=0){
+            echo "Je joueur gagne et reçois 15 golds";
+            $entityManager = GetEntityManager();
+            $player = $entityManager->getRepository(Player::class)->find($this->player->getId());
+            $player->setGold(15);
+        
+            $entityManager->flush();
+        }
+        else {
+            echo "Le monstre gagne";
+        };
+        echo "</br>";
+        echo "<a href='index.php?p=/village&name=".$_GET["name"]."' class='btn btn-primary'>Retour au village</a>";
     }
 
 }

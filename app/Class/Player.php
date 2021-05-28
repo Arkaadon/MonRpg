@@ -20,12 +20,37 @@ class Player extends Character implements PlayableInterface
      */
     private $items;
 
+    /**
+     * @ORM\Column(name="gold", type="integer", nullable=false)
+     */
+    protected int $gold;
+
     public function __construct($name, $race, $classe)
     {
         parent::__construct($name, $race, $classe);
         $this->items = new ArrayCollection();
     }
 
+    /**
+     * Get the value of gold
+     */ 
+    public function getGold()
+    {
+        return $this->gold;
+    }
+
+    /**
+     * Set the value of gold
+     *
+     * @return  self
+     */ 
+    public function setGold($gold)
+    {
+        $this->gold = $gold;
+
+        return $this;
+    }
+    
     public function getItems()
     {
         return $this->items;
@@ -69,4 +94,6 @@ class Player extends Character implements PlayableInterface
             Mes statistiques m'orriente plutôt vers une classe de type magique à distance ou au corps à corps.<br>
             Et toi qui est tu ?";
     }
+
+    
 }

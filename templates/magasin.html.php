@@ -14,6 +14,7 @@
                                <li>Type: <?=$item->getType()?></li>
                             </ul>
                         </div>
+                        <a href='index.php?p=/achat&name=<?=$_GET['name']?>&item=<?=$item->getId()?>' class='btn btn-primary'>Acheter</a>
                     </div>
                 </div>
             <?php endforeach?>

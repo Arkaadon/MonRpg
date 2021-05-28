@@ -28,9 +28,9 @@
                 <a href='index.php?p=/magasin&name=<?=$player->getName()?>' class='btn btn-primary'>Boutique</a>
             <div class='container'>
             
-           <?php foreach ($monsters as $monster):?>
-            <a href='index.php?p=/fight&name=<?=$player->getName()?>&monster=<?=$monster->getName()?>'><?=$monster->getName()?></a>
-            </br>
-        <?php endforeach?>
+            <?php foreach ($monsters as $monster):?>
+                <a href='index.php?p=/fight&name=<?=$player->getName()?>&monster=<?=$monster->getName()?>'><?=$monster->getName()?></a>
+                </br>
+            <?php endforeach?>
 </div>
 <?= $footer?>
